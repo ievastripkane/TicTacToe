@@ -63,7 +63,7 @@ namespace TicTacToe
                 label.Text = "O";
             }
             turnCount++;
-            PlaySound();
+            PlaySound("click_sound");
             CheckForWin();
             CheckForDraw();
             xPlayerTurn = !xPlayerTurn;            
@@ -131,9 +131,9 @@ namespace TicTacToe
 
         }
 
-        private void PlaySound()
+        private void PlaySound(string soundName)
         {
-           System.IO.Stream str = Properties.Resources.click_sound;
+           System.IO.Stream str = (System.IO.Stream)Properties.Resources.ResourceManager.GetObject(soundName);
            System.Media.SoundPlayer snd = new System.Media.SoundPlayer(str);
            snd.Play();
 

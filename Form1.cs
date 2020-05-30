@@ -39,9 +39,13 @@ namespace TicTacToe
         private void InitializeCells()
         {
             string labelName;
-            for(int i = 1; i <= 9; i++)
+            for (int i = 1; i <= 9; i++)
             {
                 labelName = "pictureBox" + i;
+                PictureBox picture;
+                picture = (PictureBox)Grid.Controls[labelName];
+                picture.Tag = String.Empty;
+                picture.Image = null;
                 Grid.Controls[labelName].Tag = String.Empty;
                 Grid.Controls[labelName].BackColor = Color.Transparent;
             }
@@ -49,19 +53,23 @@ namespace TicTacToe
 
         private void Player_Click(object sender, EventArgs e)
         {
-            PictureBox pic = (PictureBox)sender;
-            if(pic.Tag != String.Empty)
+            PictureBox picture = (PictureBox)sender;
+            if(picture.Tag != String.Empty)
             {
                 return;
             }
 
             if (xPlayerTurn)
             {
-                pic.Tag = "X";
+                picture.Tag = "X";
+                pic = picture;
+                timer1.Start();
             }
             else
             {
-                pic.Tag = "O";
+                picture.Tag = "O";
+                pic = picture;
+                timer1.Start();
             }
             turnCount++;
             PlaySound("click_sound");
@@ -172,7 +180,7 @@ namespace TicTacToe
             turn = pic.Tag.ToString();
             turn = turn.ToLower();
 
-            pictureName = "o_frame_0" + pictureCounter.ToString("00");
+            pictureName = turn + "_frame_0" + pictureCounter.ToString("00");
             pic.Image = (Image)Properties.Resources.ResourceManager.GetObject(pictureName);
             pic.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureCounter += 1;

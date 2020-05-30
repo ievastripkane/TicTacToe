@@ -13,9 +13,10 @@ namespace TicTacToe
 {
     public partial class Form1 : Form
     {
-
         bool xPlayerTurn = true;
         int turnCount = 0;
+        int pictureCounter = 1;
+        PictureBox pic;
 
         public Form1()
         {
@@ -161,10 +162,31 @@ namespace TicTacToe
             MessageBox.Show(winner + " wins!");
             RestartGame();
         }
-    
-    
-    
-    
+
+        private void Animate()
+        {
+            string turn;
+            string pictureName;
+            
+
+            turn = pic.Tag.ToString();
+            turn = turn.ToLower();
+
+            pictureName = "o_frame_0" + pictureCounter.ToString("00");
+            pic.Image = (Image)Properties.Resources.ResourceManager.GetObject(pictureName);
+            pic.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureCounter += 1;
+            if(pictureCounter > 20)
+            {
+                pictureCounter = 1;
+                timer1.Stop();
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Animate();
+        }
     }
 
 }

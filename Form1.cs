@@ -40,27 +40,27 @@ namespace TicTacToe
             string labelName;
             for(int i = 1; i <= 9; i++)
             {
-                labelName = "label" + i;
-                Grid.Controls[labelName].Text = string.Empty;
+                labelName = "pictureBox" + i;
+                Grid.Controls[labelName].Tag = String.Empty;
                 Grid.Controls[labelName].BackColor = Color.Transparent;
             }
         }
 
         private void Player_Click(object sender, EventArgs e)
         {
-            Label label = (Label)sender;
-            if(label.Text != string.Empty)
+            PictureBox pic = (PictureBox)sender;
+            if(pic.Tag != String.Empty)
             {
                 return;
             }
 
             if (xPlayerTurn)
             {
-                label.Text = "X";
+                pic.Tag = "X";
             }
             else
             {
-                label.Text = "O";
+                pic.Tag = "O";
             }
             turnCount++;
             PlaySound("click_sound");
@@ -72,14 +72,14 @@ namespace TicTacToe
         private void CheckForWin()
         {
             if (
-                (label1.Text == label2.Text && label2.Text == label3.Text && label1.Text != string.Empty) ||
-                (label4.Text == label5.Text && label5.Text == label6.Text && label4.Text != string.Empty) ||
-                (label7.Text == label8.Text && label8.Text == label9.Text && label7.Text != string.Empty) ||
-                (label1.Text == label4.Text && label4.Text == label7.Text && label1.Text != string.Empty) ||
-                (label2.Text == label5.Text && label5.Text == label8.Text && label2.Text != string.Empty) ||
-                (label3.Text == label6.Text && label6.Text == label9.Text && label3.Text != string.Empty) ||
-                (label1.Text == label5.Text && label5.Text == label9.Text && label1.Text != string.Empty) ||
-                (label3.Text == label5.Text && label5.Text == label7.Text && label3.Text != string.Empty)
+                (pictureBox1.Tag == pictureBox2.Tag && pictureBox2.Tag == pictureBox3.Tag && pictureBox1.Tag != string.Empty) ||
+                (pictureBox4.Tag == pictureBox5.Tag && pictureBox5.Tag == pictureBox6.Tag && pictureBox4.Tag != string.Empty) ||
+                (pictureBox7.Tag == pictureBox8.Tag && pictureBox8.Tag == pictureBox9.Tag && pictureBox7.Tag != string.Empty) ||
+                (pictureBox1.Tag == pictureBox4.Tag && pictureBox4.Tag == pictureBox7.Tag && pictureBox1.Tag != string.Empty) ||
+                (pictureBox2.Tag == pictureBox5.Tag && pictureBox5.Tag == pictureBox8.Tag && pictureBox2.Tag != string.Empty) ||
+                (pictureBox3.Tag == pictureBox6.Tag && pictureBox6.Tag == pictureBox9.Tag && pictureBox3.Tag != string.Empty) ||
+                (pictureBox1.Tag == pictureBox5.Tag && pictureBox5.Tag == pictureBox9.Tag && pictureBox1.Tag != string.Empty) ||
+                (pictureBox3.Tag == pictureBox5.Tag && pictureBox5.Tag == pictureBox7.Tag && pictureBox3.Tag != string.Empty)
                 )
             {
                 GameOver();
@@ -88,41 +88,41 @@ namespace TicTacToe
 
         private void WinnerCellsChangeColor()
         {
-            if (label1.Text == label2.Text && label1.Text == label3.Text && label1.Text != "")
+            if (pictureBox1.Tag == pictureBox2.Tag && pictureBox1.Tag == pictureBox3.Tag && pictureBox1.Tag != "")
             {
-                ChangeCellsColors(label1, label2, label3, Color.White);
+                ChangeCellsColors(pictureBox1, pictureBox2, pictureBox3, Color.White);
             }
-            else if (label4.Text == label5.Text && label4.Text == label6.Text && label4.Text != "")
+            else if (pictureBox4.Tag == pictureBox5.Tag && pictureBox4.Tag == pictureBox6.Tag && pictureBox4.Tag != "")
             {
-                ChangeCellsColors(label4, label5, label6, Color.White);
+                ChangeCellsColors(pictureBox4, pictureBox5, pictureBox6, Color.White);
             }
-            else if (label7.Text == label8.Text && label7.Text == label9.Text && label7.Text != "")
+            else if (pictureBox7.Tag == pictureBox8.Tag && pictureBox7.Tag == pictureBox9.Tag && pictureBox7.Tag != "")
             {
-                ChangeCellsColors(label7, label8, label9, Color.White);
+                ChangeCellsColors(pictureBox7, pictureBox8, pictureBox9, Color.White);
             }
-            else if (label1.Text == label4.Text && label1.Text == label7.Text && label1.Text != "")
+            else if (pictureBox1.Tag == pictureBox4.Tag && pictureBox1.Tag == pictureBox7.Tag && pictureBox1.Tag != "")
             {
-                ChangeCellsColors(label1, label4, label7, Color.White);
+                ChangeCellsColors(pictureBox1, pictureBox4, pictureBox7, Color.White);
             }
-            else if (label2.Text == label5.Text && label2.Text == label8.Text && label2.Text != "")
+            else if (pictureBox2.Tag == pictureBox5.Tag && pictureBox2.Tag == pictureBox8.Tag && pictureBox2.Tag != "")
             {
-                ChangeCellsColors(label2, label5, label8, Color.White);
+                ChangeCellsColors(pictureBox2, pictureBox5, pictureBox8, Color.White);
             }
-            else if (label3.Text == label6.Text && label3.Text == label9.Text && label3.Text != "")
+            else if (pictureBox3.Tag == pictureBox6.Tag && pictureBox3.Tag == pictureBox9.Tag && pictureBox3.Tag != "")
             {
-                ChangeCellsColors(label3, label6, label9, Color.White);
+                ChangeCellsColors(pictureBox3, pictureBox6, pictureBox9, Color.White);
             }
-            else if (label1.Text == label5.Text && label1.Text == label9.Text && label1.Text != "")
+            else if (pictureBox1.Tag == pictureBox5.Tag && pictureBox1.Tag == pictureBox9.Tag && pictureBox1.Tag != "")
             {
-                ChangeCellsColors(label1, label5, label9, Color.White);
+                ChangeCellsColors(pictureBox1, pictureBox5, pictureBox9, Color.White);
             }
-            else if (label3.Text == label5.Text && label3.Text == label7.Text && label3.Text != "")
+            else if (pictureBox3.Tag == pictureBox5.Tag && pictureBox3.Tag == pictureBox7.Tag && pictureBox3.Tag != "")
             {
-                ChangeCellsColors(label3, label5, label7, Color.White);
+                ChangeCellsColors(pictureBox3, pictureBox5, pictureBox7, Color.White);
             }
         }
 
-        private void ChangeCellsColors(Label firstLabel, Label secondLabel,Label thirdLabel, Color color)
+        private void ChangeCellsColors(PictureBox firstLabel, PictureBox secondLabel, PictureBox thirdLabel, Color color)
         {
             firstLabel.BackColor = color;
             secondLabel.BackColor = color;
